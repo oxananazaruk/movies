@@ -2,23 +2,23 @@ import { Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { GlobalStyle } from './GlobalStyle';
 import { NavLink, Outlet } from 'react-router-dom';
-import { Layout } from './Layout';
+import { Navigation, NavigationList } from './AppLayout.styled';
 
 export const AppLayout = () => {
   return (
-    <Layout>
-      <header>
+    <>
+      <Navigation>
         <nav>
-          <ul>
+          <NavigationList>
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
               <NavLink to="/movies">Movies</NavLink>
             </li>
-          </ul>
+          </NavigationList>
         </nav>
-      </header>
+      </Navigation>
 
       <main>
         <Suspense fallback={<div>LOADING PAGE...</div>}>
@@ -26,10 +26,8 @@ export const AppLayout = () => {
         </Suspense>
       </main>
 
-      <footer>FOOTER</footer>
-
       <GlobalStyle />
       <Toaster />
-    </Layout>
+    </>
   );
 };

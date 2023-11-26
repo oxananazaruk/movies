@@ -10,7 +10,7 @@ const theme = {
     white: '#fff',
     red: 'red',
     green: 'green',
-    orange: 'orange',
+    grey: '#808080',
   },
   radii: {
     sm: '4px',
