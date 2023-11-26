@@ -1,11 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import {
-  Link,
-  NavLink,
-  Outlet,
-  useLocation,
-  useParams,
-} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { NavLink, Outlet, useParams } from 'react-router-dom';
 import { BallTriangle } from 'react-loader-spinner';
 import { fetchMovieById } from '../services/api';
 import { MovieDetails } from '../components/MovieDetails/MovieDetails';
@@ -15,7 +9,6 @@ export default function MovieDetailsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const params = useParams();
-  console.log(params);
 
   useEffect(() => {
     async function getMovie() {
@@ -23,14 +16,12 @@ export default function MovieDetailsPage() {
         setIsLoading(true);
         const fetchedMovie = await fetchMovieById(params.movieId);
         setMovie(fetchedMovie);
-        console.log(movie);
       } catch (error) {
         setError(true);
       } finally {
         setIsLoading(false);
       }
     }
-
     getMovie();
   }, [params.movieId]);
 
