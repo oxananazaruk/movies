@@ -1,4 +1,5 @@
 import { Formik } from 'formik';
+import { Link, useLocation } from 'react-router-dom';
 import {
   Searchbar,
   Form,
@@ -12,6 +13,7 @@ import {
 import { BsSearch } from 'react-icons/bs';
 
 export const Movies = ({ onSubmit, results }) => {
+  const location = useLocation();
   return (
     <>
       <Searchbar>
@@ -49,8 +51,10 @@ export const Movies = ({ onSubmit, results }) => {
             const poster = baseURL + poster_path;
             return (
               <SearchMovieCard key={id}>
-                <img src={poster} alt={title} />
-                <p>{title}</p>
+                <Link to={`/movies/${id}`} state={{ from: location }}>
+                  <img src={poster} alt={title} />
+                  <p>{title}</p>
+                </Link>
               </SearchMovieCard>
             );
           })}

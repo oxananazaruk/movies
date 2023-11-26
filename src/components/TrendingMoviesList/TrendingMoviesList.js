@@ -4,8 +4,10 @@ import {
   MovieList,
   MovieCard,
 } from './TrendingMoviesList.styled';
+import { Link, useLocation } from 'react-router-dom';
 
 export const TrendingMoviesList = ({ items }) => {
+  const location = useLocation();
   return (
     <MoviesWraper>
       <Title>Trending today</Title>
@@ -16,8 +18,10 @@ export const TrendingMoviesList = ({ items }) => {
           const poster = baseURL + poster_path;
           return (
             <MovieCard key={id}>
-              <img src={poster} alt={title} />
-              <p>{title}</p>
+              <Link to={`/movies/${id}`} state={{ from: location }}>
+                <img src={poster} alt={title} />
+                <p>{title}</p>
+              </Link>
             </MovieCard>
           );
         })}
