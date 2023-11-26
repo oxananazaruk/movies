@@ -1,10 +1,12 @@
+import { MovieWraper } from './MovieDetails.styled';
+
 export const MovieDetails = ({
   movie: { genres, title, overview, poster_path, vote_average },
 }) => {
   const baseURL = 'https://image.tmdb.org/t/p/w200';
   const poster = baseURL + poster_path;
   return (
-    <div>
+    <MovieWraper>
       <img src={poster} alt={title} />
       <div>
         <h2>{title}</h2>
@@ -16,6 +18,6 @@ export const MovieDetails = ({
           <span key={id}>{name} </span>
         ))}
       </div>
-    </div>
+    </MovieWraper>
   );
 };
