@@ -45,6 +45,8 @@ export default function MovieDetailsPage() {
       {movie && <MovieDetails movie={movie} />}
 
       <ul>
+        {' '}
+        Additional information
         <li>
           <NavLink to="cast">Cast</NavLink>
         </li>
