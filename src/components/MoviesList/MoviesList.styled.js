@@ -1,13 +1,15 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
-export const MoviesWraper = styled.div`
+export const MoviesContainer = styled.div`
   margin: 0 auto;
-  text-align: center;
+  padding: 0 15px;
+  width: 100%;
 `;
 
-export const Title = styled.h2`
-  margin-bottom: ${p => p.theme.spacing(4)};
-  color: ${p => p.theme.colors.black};
+export const MoviesListWraper = styled.div`
+  margin: 0 auto;
+  margin-top: ${p => p.theme.spacing(4)};
+  text-align: center;
 `;
 
 export const MovieList = styled.ul`

@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { BallTriangle } from 'react-loader-spinner';
 import { fetchTrendingMovies } from '../services/api';
-import { TrendingMoviesList } from '../components/TrendingMoviesList/TrendingMoviesList';
+import { MoviesContainer } from '../components/MoviesList/MoviesList.styled';
+import { MoviesList } from '../components/MoviesList/MoviesList';
 
 export default function HomePage() {
   const [moviesItems, setMoviesItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     async function getTrendingMovies() {
@@ -26,7 +29,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div>
+    <MoviesContainer>
       {isLoading && (
         <BallTriangle
           height={100}
@@ -42,7 +45,12 @@ export default function HomePage() {
       {error && (
         <b>Oops! Something went wrong! Please try reloading this page!</b>
       )}
-      {moviesItems.length > 0 && <TrendingMoviesList items={moviesItems} />}
-    </div>
+      {moviesItems.length > 0 && (
+        <>
+          <h1>Trending today</h1>
+          <MoviesList results={moviesItems} location={location} />
+        </>
+      )}
+    </MoviesContainer>
   );
 }

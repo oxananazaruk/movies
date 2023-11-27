@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { GlobalStyle } from './GlobalStyle';
-import { NavLink, Outlet } from 'react-router-dom';
-import { Navigation, NavigationList } from './AppLayout.styled';
+import { Outlet } from 'react-router-dom';
+import { Navigation, NavigationList, MainLink } from './AppLayout.styled';
 
 export const AppLayout = () => {
   return (
@@ -11,10 +11,10 @@ export const AppLayout = () => {
         <nav>
           <NavigationList>
             <li>
-              <NavLink to="/">Home</NavLink>
+              <MainLink to="/">Home</MainLink>
             </li>
             <li>
-              <NavLink to="/movies">Movies</NavLink>
+              <MainLink to="/movies">Movies</MainLink>
             </li>
           </NavigationList>
         </nav>

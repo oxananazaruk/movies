@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const Navigation = styled.header`
   top: 0;
@@ -17,6 +18,16 @@ export const Navigation = styled.header`
 
 export const NavigationList = styled.ul`
   display: flex;
-  gap: ${p => p.theme.spacing(2)};
+  gap: ${p => p.theme.spacing(3)};
   justify-content: left;
+`;
+
+export const MainLink = styled(NavLink)`
+  color: ${p => p.theme.colors.black};
+  font-size: 24px;
+  font-weight: 700;
+
+  &.active {
+    color: orange;
+  }
 `;

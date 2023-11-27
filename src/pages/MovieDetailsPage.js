@@ -1,10 +1,19 @@
-import { useEffect, useState } from 'react';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
+import { Outlet, useParams, useLocation, Link } from 'react-router-dom';
 import { BallTriangle } from 'react-loader-spinner';
 import { fetchMovieById } from '../services/api';
 import { MovieDetails } from '../components/MovieDetails/MovieDetails';
+import {
+  InfoLink,
+  InfoList,
+  MovieDetailsContainer,
+  InfoContainer,
+} from '../components/MovieDetails/MovieDetails.styled';
 
 export default function MovieDetailsPage() {
+  const location = useLocation();
+  const backLinkRef = useRef(location);
+
   const [movie, setMovie] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -26,7 +35,7 @@ export default function MovieDetailsPage() {
   }, [params.movieId]);
 
   return (
-    <div>
+    <MovieDetailsContainer>
       {isLoading && (
         <BallTriangle
           height={100}
@@ -39,23 +48,27 @@ export default function MovieDetailsPage() {
           visible={true}
         />
       )}
+      <Link to={backLinkRef.current.state?.from ?? '/movies'}>
+        <b>Back to movies</b>
+      </Link>
       {error && (
         <b>Oops! Something went wrong! Please try reloading this page!</b>
       )}
       {movie && <MovieDetails movie={movie} />}
 
-      <ul>
-        {' '}
-        Additional information
-        <li>
-          <NavLink to="cast">Cast</NavLink>
-        </li>
-        <li>
-          <NavLink to="reviews">Reviews</NavLink>
-        </li>
-      </ul>
+      <InfoContainer>
+        <h3>Additional information:</h3>
+        <InfoList>
+          <li>
+            <InfoLink to="cast">Cast</InfoLink>
+          </li>
+          <li>
+            <InfoLink to="reviews">Reviews</InfoLink>
+          </li>
+        </InfoList>
+      </InfoContainer>
 
       <Outlet />
-    </div>
+    </MovieDetailsContainer>
   );
 }
