@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { fetchMoviesByQuery } from '../services/api';
 import { Loader } from '../components/Loader/Loader';
 import { Error } from '../components/Error/Error';
@@ -48,6 +48,7 @@ export default function CreateMoviePage() {
       <MoviesList results={movies} location={location} />
       {isLoading && <Loader />}
       {error && <Error />}
+      <Toaster />
     </div>
   );
 }
