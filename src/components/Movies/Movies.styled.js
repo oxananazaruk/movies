@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Form as FormikForm, Field as FormikField } from 'formik';
 
 export const Searchbar = styled.div`
   top: 0;
@@ -9,36 +8,27 @@ export const Searchbar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 64px;
-  padding-right: ${p => p.theme.spacing(6)};
-  padding-left: ${p => p.theme.spacing(6)};
-  padding-top: ${p => p.theme.spacing(6)};
-  padding-bottom: ${p => p.theme.spacing(6)};
-  color: ${p => p.theme.colors.white};
-  background-color: ${p => p.theme.colors.grey};
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  min-height: 54px;
 `;
 
-export const Form = styled(FormikForm)`
+export const Form = styled.form`
   display: flex;
   align-items: center;
   width: 100%;
   max-width: 600px;
   background-color: #fff;
-  border-radius: 3px;
+  border: 1px solid ${p => p.theme.colors.gray};
+  border-radius: 6px;
   overflow: hidden;
 `;
 
-export const Field = styled(FormikField)`
+export const Field = styled.input`
   display: inline-block;
   width: 100%;
-  font: inherit;
   font-size: 20px;
-  border: none;
   outline: none;
-  padding-left: ${p => p.theme.spacing(1)};
-  padding-right: ${p => p.theme.spacing(1)};
+  border: none;
+  padding: ${p => p.theme.spacing(2)};
 `;
 
 export const FormGroup = styled.label`
@@ -57,6 +47,7 @@ export const FormBtn = styled.button`
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   outline: none;
+  border-radius: 6px;
   &:hover {
     opacity: 1;
   }

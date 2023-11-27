@@ -5,6 +5,7 @@ export const Navigation = styled.header`
   top: 0;
   left: 0;
   position: sticky;
+  margin-bottom: 20px;
   z-index: 1100;
   display: flex;
   min-height: 64px;

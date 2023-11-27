@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { Outlet, useParams, useLocation, Link } from 'react-router-dom';
-import { BallTriangle } from 'react-loader-spinner';
+import { Loader } from '../components/Loader/Loader';
+import { Error } from '../components/Error/Error';
 import { fetchMovieById } from '../services/api';
 import { MovieDetails } from '../components/MovieDetails/MovieDetails';
 import {
@@ -36,24 +37,11 @@ export default function MovieDetailsPage() {
 
   return (
     <MovieDetailsContainer>
-      {isLoading && (
-        <BallTriangle
-          height={100}
-          width={100}
-          radius={5}
-          color="#4fa94d"
-          ariaLabel="ball-triangle-loading"
-          wrapperClass={{}}
-          wrapperStyle=""
-          visible={true}
-        />
-      )}
+      {isLoading && <Loader />}
       <Link to={backLinkRef.current.state?.from ?? '/movies'}>
         <b>Back to movies</b>
       </Link>
-      {error && (
-        <b>Oops! Something went wrong! Please try reloading this page!</b>
-      )}
+      {error && <Error />}
       {movie && <MovieDetails movie={movie} />}
 
       <InfoContainer>

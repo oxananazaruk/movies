@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const MoviesContainer = styled.div`
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 ${p => p.theme.spacing(4)};
   width: 100%;
 `;
 

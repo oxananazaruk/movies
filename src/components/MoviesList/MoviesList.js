@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MoviesListWraper, MovieList, MovieCard } from './MoviesList.styled';
 import { SlPicture } from 'react-icons/sl';
 

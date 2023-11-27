@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { BallTriangle } from 'react-loader-spinner';
+import { Loader } from '../components/Loader/Loader';
+import { Error } from '../components/Error/Error';
 import { fetchTrendingMovies } from '../services/api';
 import { MoviesContainer } from '../components/MoviesList/MoviesList.styled';
 import { MoviesList } from '../components/MoviesList/MoviesList';
@@ -30,21 +31,8 @@ export default function HomePage() {
 
   return (
     <MoviesContainer>
-      {isLoading && (
-        <BallTriangle
-          height={100}
-          width={100}
-          radius={5}
-          color="#4fa94d"
-          ariaLabel="ball-triangle-loading"
-          wrapperClass={{}}
-          wrapperStyle=""
-          visible={true}
-        />
-      )}
-      {error && (
-        <b>Oops! Something went wrong! Please try reloading this page!</b>
-      )}
+      {isLoading && <Loader />}
+      {error && <Error />}
       {moviesItems.length > 0 && (
         <>
           <h1>Trending today</h1>

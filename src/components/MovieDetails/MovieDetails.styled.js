@@ -16,7 +16,8 @@ export const MovieDetailsContainer = styled.div`
 export const InfoContainer = styled.div`
   border-top: 1px solid ${p => p.theme.colors.gray};
   border-bottom: 1px solid ${p => p.theme.colors.gray};
-  padding: 10px;
+  padding: ${p => p.theme.spacing(2)};
+  margin-bottom: ${p => p.theme.spacing(5)};
 `;
 
 export const InfoList = styled.ul`

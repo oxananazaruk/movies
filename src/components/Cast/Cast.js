@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { BallTriangle } from 'react-loader-spinner';
 import { RxAvatar } from 'react-icons/rx';
 import { fetchMovieCast } from '../../services/api';
+import { Error } from '../Error/Error';
+import { Loader } from '../Loader/Loader';
 import { CastWraper, CastList, CastCard, CastText } from './Cast.styled';
 
 export default function MovieCast() {
@@ -30,21 +31,8 @@ export default function MovieCast() {
 
   return (
     <CastWraper>
-      {isLoading && (
-        <BallTriangle
-          height={100}
-          width={100}
-          radius={5}
-          color="#4fa94d"
-          ariaLabel="ball-triangle-loading"
-          wrapperClass={{}}
-          wrapperStyle=""
-          visible={true}
-        />
-      )}
-      {error && (
-        <b>Oops! Something went wrong! Please try reloading this page!</b>
-      )}
+      {isLoading && <Loader />}
+      {error && <Error />}
       {cast.length > 0 ? (
         <CastList>
           {cast.map(actor => {
@@ -71,7 +59,7 @@ export default function MovieCast() {
           })}
         </CastList>
       ) : (
-        <p>We don`t have any casts information for this movie.</p>
+        <p>We don`t have any information about cast for this movie.</p>
       )}
     </CastWraper>
   );

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { BallTriangle } from 'react-loader-spinner';
 import { fetchMovieReviews } from '../../services/api';
+import { Error } from '../Error/Error';
+import { Loader } from '../Loader/Loader';
+import { ReviewWraper, ReviewCard } from './Reviews.styled';
 
 export default function MovieReviews() {
   const [reviews, setReviews] = useState([]);
@@ -27,34 +29,21 @@ export default function MovieReviews() {
   }, [params.movieId]);
 
   return (
-    <div>
-      {isLoading && (
-        <BallTriangle
-          height={100}
-          width={100}
-          radius={5}
-          color="#4fa94d"
-          ariaLabel="ball-triangle-loading"
-          wrapperClass={{}}
-          wrapperStyle=""
-          visible={true}
-        />
-      )}
-      {error && (
-        <b>Oops! Something went wrong! Please try reloading this page!</b>
-      )}
+    <ReviewWraper>
+      {isLoading && <Loader />}
+      {error && <Error />}
       {reviews.length > 0 ? (
         <ul>
           {reviews.map(review => (
-            <li key={review.id}>
+            <ReviewCard key={review.id}>
               <h4>Author: {review.author}</h4>
               <p>{review.content}</p>
-            </li>
+            </ReviewCard>
           ))}
         </ul>
       ) : (
         <p>We don`t have any reviews for this movie.</p>
       )}
-    </div>
+    </ReviewWraper>
   );
 }
