@@ -5,6 +5,7 @@ import {
   MovieCard,
 } from './TrendingMoviesList.styled';
 import { Link, useLocation } from 'react-router-dom';
+import { SlPicture } from 'react-icons/sl';
 
 export const TrendingMoviesList = ({ items }) => {
   const location = useLocation();
@@ -19,7 +20,17 @@ export const TrendingMoviesList = ({ items }) => {
           return (
             <MovieCard key={id}>
               <Link to={`/movies/${id}`} state={{ from: location }}>
-                <img src={poster} alt={title} />
+                {poster_path ? (
+                  <img src={poster} alt={title} />
+                ) : (
+                  <SlPicture
+                    style={{
+                      width: '250px',
+                      height: '250px',
+                      color: '#808080',
+                    }}
+                  />
+                )}
                 <p>{title}</p>
               </Link>
             </MovieCard>

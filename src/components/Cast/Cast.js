@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { BallTriangle } from 'react-loader-spinner';
+import { RxAvatar } from 'react-icons/rx';
 import { fetchMovieCast } from '../../services/api';
+import { CastWraper, CastList, CastCard, CastText } from './Cast.styled';
 
 export default function MovieCast() {
   const [cast, setCast] = useState([]);
@@ -25,10 +27,9 @@ export default function MovieCast() {
 
     getMovieCast();
   }, [params.movieId]);
-  console.log(cast);
 
   return (
-    <div>
+    <CastWraper>
       {isLoading && (
         <BallTriangle
           height={100}
@@ -44,22 +45,34 @@ export default function MovieCast() {
       {error && (
         <b>Oops! Something went wrong! Please try reloading this page!</b>
       )}
-      {cast.length > 0 && (
-        <ul>
+      {cast.length > 0 ? (
+        <CastList>
           {cast.map(actor => {
             const { id, profile_path, name, character } = actor;
             const baseUrl = 'https://image.tmdb.org/t/p/w200';
             const profile = baseUrl + profile_path;
             return (
-              <li key={id}>
-                <img src={profile} alt={name} />
-                <p>{name}</p>
-                <p>Character: {character}</p>
-              </li>
+              <CastCard key={id}>
+                {profile_path ? (
+                  <img src={profile} alt={name} width="150px" height="150px" />
+                ) : (
+                  <RxAvatar
+                    style={{
+                      width: '150px',
+                      height: '150px',
+                      color: '#808080',
+                    }}
+                  />
+                )}
+                <CastText>{name}</CastText>
+                <CastText>Character: {character}</CastText>
+              </CastCard>
             );
           })}
-        </ul>
+        </CastList>
+      ) : (
+        <p>We don`t have any casts information for this movie.</p>
       )}
-    </div>
+    </CastWraper>
   );
 }

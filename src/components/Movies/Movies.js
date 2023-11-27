@@ -11,6 +11,7 @@ import {
   SearchMovieCard,
 } from './Movies.styled';
 import { BsSearch } from 'react-icons/bs';
+import { SlPicture } from 'react-icons/sl';
 
 export const Movies = ({ onSubmit, results }) => {
   const location = useLocation();
@@ -52,7 +53,17 @@ export const Movies = ({ onSubmit, results }) => {
             return (
               <SearchMovieCard key={id}>
                 <Link to={`/movies/${id}`} state={{ from: location }}>
-                  <img src={poster} alt={title} />
+                  {poster_path ? (
+                    <img src={poster} alt={title} />
+                  ) : (
+                    <SlPicture
+                      style={{
+                        width: '250px',
+                        height: '350px',
+                        color: '#808080',
+                      }}
+                    />
+                  )}
                   <p>{title}</p>
                 </Link>
               </SearchMovieCard>
